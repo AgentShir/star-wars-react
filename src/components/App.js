@@ -6,15 +6,26 @@ class App extends Component {
   // Set props and state below.
   // You should set state for vehicles (empty array), value (empty string), pilot (empty) string.
   // Enter your code below:
+constructor(props){
+  super(props);
 
-
-
+  this.state = {
+    vehicles: [],
+    value: '',
+    pilot: ''
+  }
+  this.handleNameChange = this.handleNameChange.bind(this);
+  this.handleFormSubmit = this.handleFormSubmit.bind(this);
+}
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
-
-
+ handleNameChange(event){
+   this.setState({
+     value: event.target.value
+   })
+ }
 
   //  FORM: SUBMIT METHOD
   // handleSubmit below:
@@ -22,6 +33,14 @@ class App extends Component {
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
+  handleFormSubmit(event){
+    event.preventDefault()
+    this.setState ({
+      pilot: this.state.pilot,
+      value: ''
+    })
+  }
+
 
 
   // LIFECYCLE
@@ -31,6 +50,17 @@ class App extends Component {
   // In your response look for 'results'. It should return this array.
   // You will want to use this array when you set the state of 'vehicles'. You will need this data in your render.
   // Enter your code below:
+  componentDidMount(){
+    var url ='https://swapi.co/api/vehicles/'
+    fetch(url)
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+          console.log(data)
+          this.setState({vehicles:data.results});
+      });
+  }
 
 
   // RENDER
@@ -46,14 +76,20 @@ class App extends Component {
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
     */
-    }
+
     return (
       <div className="App">
+        <div className="jumbotron">
+          <div className="form section">
+            <div className="vehicle cards">
         {/*
         The App component needs the following:
          jumbotron section, form section, vehicle cards section.
          Your form will also need a header in which you will pass the state of the form upon submit.
          */}
+            </div>
+          </div>
+         </div>
       </div>
     );
   }
