@@ -91,7 +91,7 @@ constructor(props){
               </form>
           </div>
           <div className="card">
-            <div className="card-block">
+          
             {this.state.vehicles.map(item => (
                 <div className="wrapper" key={item.name}>
                   <div>Vehicle:{item.name}</div>
@@ -104,9 +104,9 @@ constructor(props){
                     <div>Lengeth:{item.length}</div>
                     <div>Max Speed:{item.max_atmosphering_speed}</div>
                     <div>Cargo Capacity:{item.cargo_capacity}</div>
-              </div>
-              </div>
-                ))}
+                </div>
+              ))}
+
           </div>
       </div>
         );
