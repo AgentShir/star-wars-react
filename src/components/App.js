@@ -14,16 +14,14 @@ constructor(props){
     value: '',
     pilot: ''
   }
-  this.handleNameChange = this.handleNameChange.bind(this);
-  this.handleFormSubmit = this.handleFormSubmit.bind(this);
 }
   // FORM: HANDLE INPUT CHANGES
   // handleNameChange below:
   // See form lesson for details.
   // Enter your code below:
- handleNameChange(event){
+ handleNameChange = (e) =>{
    this.setState({
-     value: event.target.value
+     value: e.target.value
    })
  }
 
@@ -33,10 +31,10 @@ constructor(props){
   // Once the form is sumbited, two things need to happen: set the state of pilot to the input value.
   // Then, set the value of the input back to an empty string.
   // Enter your code below:
-  handleFormSubmit(event){
-    event.preventDefault()
+  handleFormSubmit = (e) =>{
+    e.preventDefault()
     this.setState ({
-      pilot: this.state.pilot,
+      pilot: this.state.value,
       value: ''
     })
   }
@@ -59,7 +57,7 @@ constructor(props){
       .then(data => {
           console.log(data)
           this.setState({vehicles:data.results});
-      });
+      })
   }
 
 
@@ -72,7 +70,6 @@ constructor(props){
   // Enter your code below:
 
   render() {
-    let swthings = this.state.swthings;
     /*
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
@@ -86,38 +83,34 @@ constructor(props){
             <p>The Vehicles of Star Wars</p>
           </div>
         </div>
+          <div className="form">
+              <form onSubmit={this.handleFormSubmit}>
+                <h3>What is your name, pilot?</h3>
+                <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange}></input><br />
+                <input className="btn btn-primary btn-sm" type="submit" value="Submit"/>
+              </form>
+          </div>
           <div className="card">
-            <div className="form section">
-              <div className="card-block">
-                <form onSubmit={this.handleFormSubmit}>
-                  <h3>What is your name, pilot?</h3>
-                  <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange}></input><br />
-                  <input className="btn btn-primary btn-sm" type="submit" value="Submit"/>
-                </form>
+            <div className="card-block">
+            {this.state.vehicles.map(item => (
+                <div className="wrapper" key={item.name}>
+                  <div>Vehicle:{item.name}</div>
+                  <div>Model:{item.model}</div>
+                    <div>Specs</div>
+                    <div>Manufacturer:{item.manufacturer}</div>
+                    <div>Class:{item.vehicle_class}</div>
+                    <div>passengers:{item.passengers}</div>
+                    <div>Crew:{item.crew}</div>
+                    <div>Lengeth:{item.length}</div>
+                    <div>Max Speed:{item.max_atmosphering_speed}</div>
+                    <div>Cargo Capacity:{item.cargo_capacity}</div>
               </div>
-            </div>
+              </div>
+                ))}
           </div>
-            <div className="vehicle cards">
-              {this.state.vehicles.results.map(item => (
-                  <div className="wrapper" key={item.name}>
-                    <div>Vehicle:{item.name}</div>
-                    <div>Model:{item.model}</div>
-                      <div>Specs</div>
-                      <div>Manufacturer:{item.manufacturer}</div>
-                      <div>Class:{item.vehicle_class}</div>
-                      <div>passengers:{item.passengers}</div>
-                      <div>Crew:{item.crew}</div>
-                      <div>Lengeth:{item.length}</div>
-                      <div>Max Speed:{item.max_atmosphering_speed}</div>
-                      <div>Cargo Capacity:{item.cargo_capacity}</div>
-                  </div>
-                  ))}
-            </div>
-          </div>
+      </div>
         );
       }
-    }
-
-
+}
 
 export default App;
