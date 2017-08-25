@@ -72,6 +72,7 @@ constructor(props){
   // Enter your code below:
 
   render() {
+    let swthings = this.state.swthings;
     /*
     Store vehicles state in a variable.
     Map over this variable to access the values needed to render.
@@ -79,20 +80,44 @@ constructor(props){
 
     return (
       <div className="App">
-        <div className="jumbotron">
-          <div className="form section">
-            <div className="vehicle cards">
-        {/*
-        The App component needs the following:
-         jumbotron section, form section, vehicle cards section.
-         Your form will also need a header in which you will pass the state of the form upon submit.
-         */}
+        <div className="container">
+          <div className="jumbotron">
+            <h1>Star Wars</h1>
+            <p>The Vehicles of Star Wars</p>
+          </div>
+        </div>
+          <div className="card">
+            <div className="form section">
+              <div className="card-block">
+                <form onSubmit={this.handleFormSubmit}>
+                  <h3>What is your name, pilot?</h3>
+                  <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange}></input><br />
+                  <input className="btn btn-primary btn-sm" type="submit" value="Submit"/>
+                </form>
+              </div>
             </div>
           </div>
-         </div>
-      </div>
-    );
-  }
-}
+            <div className="vehicle cards">
+              {this.state.vehicles.results.map(item => (
+                  <div className="wrapper" key={item.name}>
+                    <div>Vehicle:{item.name}</div>
+                    <div>Model:{item.model}</div>
+                      <div>Specs</div>
+                      <div>Manufacturer:{item.manufacturer}</div>
+                      <div>Class:{item.vehicle_class}</div>
+                      <div>passengers:{item.passengers}</div>
+                      <div>Crew:{item.crew}</div>
+                      <div>Lengeth:{item.length}</div>
+                      <div>Max Speed:{item.max_atmosphering_speed}</div>
+                      <div>Cargo Capacity:{item.cargo_capacity}</div>
+                  </div>
+                  ))}
+            </div>
+          </div>
+        );
+      }
+    }
+
+
 
 export default App;
