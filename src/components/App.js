@@ -83,30 +83,47 @@ constructor(props){
             <p>The Vehicles of Star Wars</p>
           </div>
         </div>
-          <div className="form">
-              <form onSubmit={this.handleFormSubmit}>
-                <h3>What is your name, pilot?</h3>
-                <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange}></input><br />
-                <input className="btn btn-primary btn-sm" type="submit" value="Submit"/>
-              </form>
-          </div>
-          <div className="card">
-          
-            {this.state.vehicles.map(item => (
-                <div className="wrapper" key={item.name}>
-                  <div>Vehicle:{item.name}</div>
-                  <div>Model:{item.model}</div>
-                    <div>Specs</div>
-                    <div>Manufacturer:{item.manufacturer}</div>
-                    <div>Class:{item.vehicle_class}</div>
-                    <div>passengers:{item.passengers}</div>
-                    <div>Crew:{item.crew}</div>
-                    <div>Lengeth:{item.length}</div>
-                    <div>Max Speed:{item.max_atmosphering_speed}</div>
-                    <div>Cargo Capacity:{item.cargo_capacity}</div>
-                </div>
-              ))}
+          <div className="container">
+            <div className="jumbotron">
+              <div className="form">
+                  <form onSubmit={this.handleFormSubmit}>
+                    <h3>What is your name, pilot?</h3>
+                    <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange} name="name" id="pilot"/><br />
+                    <button onClick={this.handleFormSubmit}>Submit</button>
+                    <p>{this.state.pilot}</p>
+                  </form>
 
+
+
+                </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div class="col-sm-4">
+                <div className="card">
+                  <div className="card-block">
+                  {this.state.vehicles.map(item => (
+                      <div className="wrapper" key={item.name}>
+                        <h4 class="card-title">Vehicle:{item.name}</h4>
+                        <div>Model:{item.model}</div>
+
+                          <div>Specs</div>
+
+                          <div>Manufacturer:{item.manufacturer}</div>
+                          <div>Class:{item.vehicle_class}</div>
+                          <div>passengers:{item.passengers}</div>
+                          <div>Crew:{item.crew}</div>
+                          <div>Lengeth:{item.length}</div>
+                          <div>Max Speed:{item.max_atmosphering_speed}</div>
+                          <div>Cargo Capacity:{item.cargo_capacity}</div>
+
+                  </div>
+                ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
         );
