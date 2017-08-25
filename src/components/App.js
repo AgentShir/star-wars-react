@@ -77,13 +77,13 @@ constructor(props){
 
     return (
       <div className="App">
-        <div className="container">
+        <div className="wrapper" style={{width: '80rem'}}>
           <div className="jumbotron">
             <h1>Star Wars</h1>
             <p>The Vehicles of Star Wars</p>
           </div>
-        </div>
-          <div className="container">
+
+
             <div className="jumbotron">
               <div className="form">
                   <form onSubmit={this.handleFormSubmit}>
@@ -92,18 +92,14 @@ constructor(props){
                     <button onClick={this.handleFormSubmit}>Submit</button>
                     <p>{this.state.pilot}</p>
                   </form>
-
-
-
-                </div>
+              </div>
             </div>
-          </div>
+
           <div className="container">
-            <div className="row">
-              <div class="col-sm-4">
-                <div className="card">
-                  <div className="card-block">
                   {this.state.vehicles.map(item => (
+                    <div className="card" style={{width:'20rem'}}>
+                      <div className="card-block">
+
                       <div className="wrapper" key={item.name}>
                         <h4 class="card-title">Vehicle:{item.name}</h4>
                         <div>Model:{item.model}</div>
@@ -118,13 +114,12 @@ constructor(props){
                           <div>Max Speed:{item.max_atmosphering_speed}</div>
                           <div>Cargo Capacity:{item.cargo_capacity}</div>
 
-                  </div>
+                      </div>
+                      </div>
+                    </div>
                 ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
       </div>
         );
       }
