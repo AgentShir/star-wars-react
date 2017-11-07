@@ -37,6 +37,7 @@ constructor(props){
       pilot: this.state.value,
       value: ''
     })
+    document.getElementById("pilot").value = ''
   }
 
 
@@ -77,9 +78,11 @@ constructor(props){
 
     return (
       <div className="App">
+        <div className="container">
         <div className="wrapper" style={{width: '80rem'}}>
           <div className="jumbotron">
             <h1>Star Wars</h1>
+            <hr className="my-4" />
             <p>The Vehicles of Star Wars</p>
           </div>
 
@@ -97,29 +100,33 @@ constructor(props){
 
           <div className="container">
                   {this.state.vehicles.map(item => (
+                    <div className="card-deck">
                     <div className="card" style={{width:'20rem'}}>
                       <div className="card-block">
 
                       <div className="wrapper" key={item.name}>
-                        <h4 class="card-title">Vehicle:{item.name}</h4>
-                        <div>Model:{item.model}</div>
-
-                          <div>Specs</div>
-
-                          <div>Manufacturer:{item.manufacturer}</div>
-                          <div>Class:{item.vehicle_class}</div>
-                          <div>passengers:{item.passengers}</div>
-                          <div>Crew:{item.crew}</div>
-                          <div>Lengeth:{item.length}</div>
-                          <div>Max Speed:{item.max_atmosphering_speed}</div>
-                          <div>Cargo Capacity:{item.cargo_capacity}</div>
-
+                        <h4 className="card-title">Vehicle: {item.name}</h4>
+                        <div>Model: {item.model}</div>
+                          <div className="card card-outline-secondary mb-3 text-left">
+                            <ul className="list-group list-group-flush">
+                              <span>Specs</span>
+                              <li className="list-group-item">Manufacturer: {item.manufacturer}</li>
+                              <li className="list-group-item">Class: {item.vehicle_class}</li>
+                              <li className="list-group-item">passengers: {item.passengers}</li>
+                              <li className="list-group-item">Crew: {item.crew}</li>
+                              <li className="list-group-item">Lengeth: {item.length}</li>
+                              <li className="list-group-item">Max Speed: {item.max_atmosphering_speed}</li>
+                              <li className="list-group-item">Cargo Capacity: {item.cargo_capacity}</li>
+                            </ul>
+                          </div>
                       </div>
                       </div>
                     </div>
+                  </div>
                 ))}
           </div>
         </div>
+      </div>
       </div>
         );
       }
