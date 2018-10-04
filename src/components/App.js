@@ -91,8 +91,8 @@ constructor(props){
               <div className="form">
                   <form onSubmit={this.handleFormSubmit}>
                     <h3>What is your name, pilot?</h3>
-                    <input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange} name="name" id="pilot"/><br />
-                    <button onClick={this.handleFormSubmit}>Submit</button>
+                    <div><input type="text" placeholder="Enter Your Name" onChange={this.handleNameChange} name="name" id="pilot"/></div><br />
+                    <button className="btn btn-primary btn-sm" onClick={this.handleFormSubmit}>Submit</button>
                     <p>{this.state.pilot}</p>
                   </form>
               </div>
